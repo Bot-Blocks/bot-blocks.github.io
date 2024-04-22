@@ -65,7 +65,28 @@ function updateCode(event) {
 
   var code = Blockly.JavaScript.workspaceToCode(workspace);
   Blockly.JavaScript.addReservedWords("code");
-  document.getElementById("generatedCodeBlockly").textContent = code;
+  document.getElementById("generatedCodeBlockly").textContent = `const Discord = require("discord.js");
+const {
+  EmbedBuilder,
+  ActivityType,
+  Events,
+  Collection,
+  SlashCommandBuilder,
+  SlashCommandSubcommandBuilder,
+  PermissionsBitField
+} = require("discord.js");
+
+const client = new Discord.Client({
+  intents: [
+    Discord.IntentsBitField.Flags.Guilds,
+    Discord.IntentsBitField.Flags.GuildMessages,
+    Discord.IntentsBitField.Flags.MessageContent,
+    Discord.IntentsBitField.Flags.GuildPresences,
+    Discord.IntentsBitField.Flags.GuildMessageReactions
+  ]
+});
+
+${code}`;
 }
 
 function runCode() {
