@@ -37,21 +37,3 @@ javascript.javascriptGenerator.forBlock['process_env'] = function(block, generat
   
   return [code, javascript.Order.NONE];
 };
-
-Blockly.Blocks['messages_messageCreate'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("When a message is sent");
-    this.appendStatementInput("NAME")
-        .setCheck(null);
-    this.setColour(60);
- this.setTooltip("When a message is sent");
- this.setHelpUrl("");
-  }
-};
-
-javascript.javascriptGenerator.forBlock['messages_messagecreate'] = function(block, generator) {
-  var code = 'client.on("messageCreate", async (message) => {})';
-  return code;
-};
-
