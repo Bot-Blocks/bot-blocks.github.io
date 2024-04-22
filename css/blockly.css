@@ -19,24 +19,6 @@ body {
   overflow-y: auto;
 }
 
-#generatedCodeBlockly {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: scroll;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  padding: 10px;
-  white-space: pre;
-  background-color: rgba(0, 0, 0, 0.8);
-  margin: 0;
-  position: relative;
-  max-height: 100vh;
-}
-
-#generatedCodeBlockly code {
-  background-color: rgb(42, 41, 65)
-}
-
 .javascriptcodepopup {
   max-width: 100%;
   max-height: 100%;
@@ -47,13 +29,16 @@ body {
   right: 0;
   height: 100vh;
   display: none;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  border: 1px solid #000;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   overflow-x: auto;
   overflow-y: scroll;
   z-index: 9999;
+}
+
+.javascriptcodepopup code {
+  background-color: rgb(42, 41, 65);
   color: white;
 }
 
