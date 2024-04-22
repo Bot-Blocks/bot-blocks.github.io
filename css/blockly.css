@@ -35,7 +35,6 @@ body {
   border-radius: 8px;
   overflow: auto;
   z-index: 9999;
-  border: 2px solid white;
 }
 
 #javascriptcodepopupCodeBlock {
@@ -44,7 +43,6 @@ body {
   display: block;
   overflow: hidden;
   color: white;
-  border: 2px solid white;
 }
 
 #javascriptcodepopupClose {
@@ -55,7 +53,6 @@ body {
   right: 5px;
   padding: 5px 10px;
   background-color: red;
-  border: 2px solid white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
