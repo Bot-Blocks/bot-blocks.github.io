@@ -15,10 +15,12 @@ body {
 }
 
 #buttonContainer button {
-  margin: 3px auto;
+  padding: 3px auto;
   background-color: rgba(0, 0, 0, 0);
   border: 2px solid white;
   border-radius: 5px;
+  color: white;
+  font-size: large;
 }
 
 #blocklyContainer {
