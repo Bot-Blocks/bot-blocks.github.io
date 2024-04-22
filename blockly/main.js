@@ -1,4 +1,4 @@
-Blockly.Blocks['discord_bottoken'] = {
+Blockly.Blocks['main_bottoken'] = {
   init: function() {
     this.appendValueInput("TOKEN")
         .setCheck(["String", "Env"])
@@ -9,7 +9,7 @@ Blockly.Blocks['discord_bottoken'] = {
   }
 };
 
-javascript.javascriptGenerator.forBlock['discord_bottoken'] = function(block, generator) {
+javascript.javascriptGenerator.forBlock['main_bottoken'] = function(block, generator) {
   var value_token = generator.valueToCode(block, 'TOKEN', javascript.Order.ATOMIC);
   var code = `client.login(${value_token})`;
   return code;
