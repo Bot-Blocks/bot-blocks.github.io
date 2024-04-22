@@ -14,7 +14,7 @@ javascript.javascriptGenerator.forBlock['message_received'] = function (block, g
   var statements_code = generator.statementToCode(block, 'CODE');
 
   var code = `client.on(Events.MessageCreate, async (message) => {
-${code}
+${statements_code}
 });`;
 
   return code;
