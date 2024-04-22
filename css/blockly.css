@@ -47,6 +47,7 @@ body {
   overflow-x: auto;
   overflow-y: scroll;
   z-index: 9999;
+  color: white;
 }
 
 .popup-close {
@@ -55,7 +56,9 @@ body {
   top: 5px;
   right: 5px;
   padding: 5px 10px;
-  background-color: #ccc;
+  background-color: rgba(0, 0, 0, 1);
   border: none;
+  border-radius: 10px;
   cursor: pointer;
+  color: white;
 }
