@@ -35,5 +35,5 @@ javascript.javascriptGenerator.forBlock['process_env'] = function(block, generat
   
   var code = `process.env[${value_env}]`;
   
-  return [code, javascript.Order_NONE];
+  return [code, javascript.Order.NONE];
 };
