@@ -177,6 +177,14 @@ function recoverProject() {
   }
 }
 
+function javascriptCodePopup() {
+  document.getElementById('javascriptcodepopup').style.display = 'block';
+}
+
+function closeJavascriptCodePopup() {
+  document.getElementById('javascriptcodepopup').style.display = 'none';
+}
+
 window.addEventListener('beforeunload', function(event) {
   event.preventDefault();
 });
