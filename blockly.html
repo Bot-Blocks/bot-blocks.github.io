@@ -14,9 +14,40 @@
   <script src="https://unpkg.com/@blockly/theme-dark@6.0.5/dist/index.js"></script>
 
   <link rel="stylesheet" href="style.css">
+  <style>
+    #blocklyContainer {
+    display: flex;
+    flex: 1;
+    }
+    
+    #blocklyDiv {
+    flex: 1.8;
+    height: 100%;
+    overflow-y: auto;
+    }
+
+    #generatedCodeBlockly {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: scroll;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    white-space: pre;
+    background-color: #f0f0f0;
+    margin: 0;
+    position: relative;
+    max-height: 100vh;
+    }
+  </style>
 </head>
 
 <body>
+  <div id="blocklyContainer">
+    <div id="blocklyDiv"></div>
+    <p id="generatedCodeBlockly">...</p>
+  </div>
+  
   <xml id="toolbox" style="display: none">
     <category name="Logic" colour="#5b80a5">
       <block type="controls_if"></block>
