@@ -17,10 +17,13 @@
 </head>
 
 <body>
-  <div id="blocklyContainer">
-    <div id="blocklyDiv"></div>
-    <p id="generatedCodeBlockly">...</p>
+  <div id="buttonContainer">
+    <button id="saveFile" onclick="saveToFile()">Save To File</button>
+    <button id="loadFile" onclick="loadFromFile()">Load From File</button>
+    <button id="recoverProject" onclick="recoverProject()">Recover Project</button>
   </div>
+  
+  <div id="blocklyDiv"></div>
   
   <xml id="toolbox" style="display: none">
     <category name="Logic" colour="#5b80a5">
