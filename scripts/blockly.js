@@ -192,5 +192,12 @@ function closeJavascriptCodePopup() {
 }
 
 window.addEventListener('beforeunload', function(event) {
+  var xmlDom = Blockly.Xml.workspaceToDom(workspace);
+  var xmlText = Blockly.Xml.domToText(xmlDom);
+
+  if (xmlText == "") return;
+
+  console.log(xmlText);
+
   event.preventDefault();
 });
