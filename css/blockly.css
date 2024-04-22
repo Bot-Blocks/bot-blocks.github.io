@@ -42,6 +42,10 @@ body {
   background-color: rgb(42, 41, 65);
 }
 
+#javascriptcodepopupCodeBlock {
+  display: block;
+}
+
 .javascriptcodepopup-close {
   font-size: larger;
   display: block;
