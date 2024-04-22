@@ -20,18 +20,18 @@ ${statements_code}});`;
 };
 
 Blockly.Blocks['message_receivednobot'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("when message received & author is a user");
+      .appendField("when message received & author is a user");
     this.appendStatementInput("CODE")
-        .setCheck(null);
+      .setCheck(null);
     this.setColour(195);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
-javascript.javascriptGenerator.forBlock['message_receivednobot'] = function(block, generator) {
+javascript.javascriptGenerator.forBlock['message_receivednobot'] = function (block, generator) {
   var statements_code = generator.statementToCode(block, 'CODE');
 
   var code = `client.on(Events.MessageCreate, async (message) => {
@@ -77,4 +77,52 @@ Blockly.Blocks['message_content'] = {
 
 javascript.javascriptGenerator.forBlock['message_content'] = function (block, generator) {
   return ['message.content', javascript.Order.NONE];
+};
+
+Blockly.Blocks['message_user'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("message author");
+    this.setInputsInline(true);
+    this.setOutput(true, "String");
+    this.setColour(210);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['message_user'] = function (block, generator) {
+  return ['message.author', javascript.Order.NONE];
+};
+
+Blockly.Blocks['message_member'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("message member");
+    this.setInputsInline(true);
+    this.setOutput(true, "Member");
+    this.setColour(45);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['message_member'] = function (block, generator) {
+  return ['message.member', javascript.Order.NONE];
+};
+
+Blockly.Blocks['message_channel'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("message channel");
+    this.setInputsInline(true);
+    this.setOutput(true, "Channel");
+    this.setColour(15);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['message_channel'] = function (block, generator) {
+  return ['message.channel', javascript.Order.NONE];
 };
