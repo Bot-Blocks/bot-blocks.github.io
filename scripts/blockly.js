@@ -42,7 +42,7 @@ const workspace = Blockly.inject("blocklyDiv", {
   },
 });
 
-let localSaveCount = 5;
+let localSaveCount = 4;
 
 function saveRecoverXmlProject() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
@@ -59,7 +59,7 @@ function updateCode(event) {
   localSaveCount -= 1;
 
   if (localSaveCount < 0) {
-    localSaveCount = 5;
+    localSaveCount = 4;
     saveRecoverXmlProject();
   }
 
@@ -89,7 +89,7 @@ function saveToFile() {
     return;
   }
 
-  fileName += ".sbdv"; // File format
+  fileName += ".bbw"; // File format
 
   var blob = new Blob([xmlText], { type: "application/xml" });
   var link = document.createElement("a");
@@ -102,7 +102,7 @@ function saveToFile() {
 function loadFromFile() {
   var fileInput = document.createElement("input");
   fileInput.type = "file";
-  fileInput.accept = ".bbbw";
+  fileInput.accept = ".bbw";
 
   fileInput.addEventListener("change", function (e) {
     var file = e.target.files[0];
