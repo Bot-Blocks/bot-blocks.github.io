@@ -45,6 +45,10 @@ const workspace = Blockly.inject("blocklyDiv", {
 let localSaveCount = 4;
 var javascriptCode = '';
 
+function emptyXml(xml) {
+  return xml == '<xml xmlns="https://developers.google.com/blockly/xml"></xml>'  || xml == '';
+}
+
 function saveRecoverXmlProject() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
   var xmlText = Blockly.Xml.domToText(xmlDom);
@@ -143,7 +147,6 @@ function loadFromFile() {
         var parser = new DOMParser();
         var xmlDom = parser.parseFromString(xmlData, "application/xml");
 
-        window.mouse
         Blockly.Xml.domToWorkspace(xmlDom.documentElement, workspace);
 
         updateCode({ type: "yourmum" });
@@ -167,7 +170,7 @@ function recoverProject() {
 
     if (recoverData == null) {
       return window.alert("Recovered project was not found. No changes were made");
-    } else if (recoverData == '<xml xmlns="https://developers.google.com/blockly/xml"></xml>') {
+    } else if (emptyXml(recoverData)) {
       return window.alert("Recovered project is empty. No changes were made");
     } else {
       workspace.clear();
@@ -195,9 +198,7 @@ window.addEventListener('beforeunload', function(event) {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
   var xmlText = Blockly.Xml.domToText(xmlDom);
 
-  if (xmlText == "") return;
-
-  console.log(xmlText);
+  if (emptyXml(xmlText)) return;
 
   event.preventDefault();
 });
