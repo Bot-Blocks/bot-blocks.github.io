@@ -43,6 +43,7 @@ const workspace = Blockly.inject("blocklyDiv", {
 });
 
 let localSaveCount = 4;
+var javascriptCode = '';
 
 function saveRecoverXmlProject() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
@@ -65,7 +66,8 @@ function updateCode(event) {
 
   var code = Blockly.JavaScript.workspaceToCode(workspace);
   Blockly.JavaScript.addReservedWords("code");
-  document.getElementById("generatedCodeBlockly").textContent = `const Discord = require("discord.js");
+  Blockly.JavaScript.addReservedWords("javascriptCode");
+  javascriptCode = `const Discord = require("discord.js");
 const {
   EmbedBuilder,
   ActivityType,
@@ -179,6 +181,7 @@ function recoverProject() {
 
 function javascriptCodePopup() {
   document.getElementById('javascriptcodepopup').style.display = 'block';
+  document.getElementById('javascriptcodepopupCodeBlock').textContent = javascriptCode;
 }
 
 function closeJavascriptCodePopup() {
