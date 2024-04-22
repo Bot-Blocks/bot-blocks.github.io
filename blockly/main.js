@@ -38,11 +38,12 @@ javascript.javascriptGenerator.forBlock['process_env'] = function(block, generat
   return [code, javascript.Order.NONE];
 };
 
-Blockly.Blocks['messages_messageCreate'] = {
+Blockly.Blocks['messages_messagecreate'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("When a message is sent");
-    this.setNextStatement(true, null);
+    this.appendStatementInput("NAME")
+        .setCheck(null);
     this.setColour(60);
  this.setTooltip("When a message is sent");
  this.setHelpUrl("");
