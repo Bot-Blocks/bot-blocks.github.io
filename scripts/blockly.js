@@ -65,8 +65,7 @@ function updateCode(event) {
   }
 
   var code = Blockly.JavaScript.workspaceToCode(workspace);
-  Blockly.JavaScript.addReservedWords("code");
-  Blockly.JavaScript.addReservedWords("javascriptCode");
+
   javascriptCode = `const Discord = require("discord.js");
 const {
   EmbedBuilder,
@@ -86,6 +85,10 @@ const client = new Discord.Client({
     Discord.IntentsBitField.Flags.GuildPresences,
     Discord.IntentsBitField.Flags.GuildMessageReactions
   ]
+});
+
+client.on(Events.ClientReady, () => {
+  console.log(\`I'm connected as \${client.user.username}!\`);
 });
 
 ${code}`;

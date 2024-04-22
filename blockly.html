@@ -270,8 +270,10 @@
       <block type="process_env"></block>
     </category>
 
-    <category name="Messages" colour="#FFD133">
-      <block type="messages_messageCreate"></block>
+    <category name="Message" colour="#5b93a5">
+      <block type="message_received"></block>
+      <block type="message_content"></block>
+      <block type="message_reply"></block>
     </category>
 
     <!-- <category name="yourNameHere" colour="hex color"> -->
@@ -283,13 +285,14 @@
   <div id="javascriptcodepopup" class="javascriptcodepopup">
     <button class="javascriptcodepopup-close" onclick="closeJavascriptCodePopup()">Close</button>
     <pre id="javascriptcodepopupCodeBlock">
-      'If you see this, something probably broke :)'
+      'If you see this, something probably broke :D'
     </pre>
   </div>
 
   <script src="scripts/blockly.js"></script>
 
   <script src="blockly/main.js"></script>
+  <script src="blockly/message.js"></script>
 
   <!-- <script src="path to your blocks here"></script>" -->
 </body>
