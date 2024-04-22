@@ -38,6 +38,7 @@ body {
 }
 
 .javascriptcodepopup code {
+  display: block;
   background-color: rgb(42, 41, 65);
 }
 
