@@ -9,6 +9,18 @@ body {
   background-color: #1e1e1e;
 }
 
+#buttonContainer {
+  margin: 3px;
+  background-color: #1e1e1e;
+}
+
+#buttonContainer button {
+  margin: 3px auto;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
 #blocklyContainer {
   display: flex;
   flex: 1;
