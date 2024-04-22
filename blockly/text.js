@@ -10,6 +10,6 @@ Blockly.Blocks['text_newline'] = {
 };
 
 javascript.javascriptGenerator.forBlock['text_newline'] = function (block, generator) {
-    var code = '\n';
+    var code = '\\n';
     return [code, javascript.Order.NONE];
 };
