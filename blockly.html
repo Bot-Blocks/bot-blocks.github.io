@@ -21,6 +21,7 @@
     <button id="saveFile" onclick="saveToFile()">Save To File</button>
     <button id="loadFile" onclick="loadFromFile()">Load From File</button>
     <button id="recoverProject" onclick="recoverProject()">Recover Project</button>
+    <button id="openJavascriptCode" onclick="javascriptCodePopup()">Open JavaScript></button>
   </div>
   
   <div id="blocklyDiv"></div>
@@ -274,6 +275,16 @@
     <!-- </category> -->
 
   </xml>
+
+  <div id="javascriptcodepopup" class="popup">
+    <button class="popup-close" onclick="closePopup()">Close</button>
+    <code id="codeBlock">
+      function greet() {
+        alert('Hello, World!');
+      }
+      greet();
+    </code>
+  </div>
 
   <script src="scripts/blockly.js"></script>
 
