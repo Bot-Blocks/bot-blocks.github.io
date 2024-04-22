@@ -16,11 +16,17 @@ body {
 
 #buttonContainer button {
   padding: 3px auto;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid white;
+  background-color: #1e1e1e;
+  border: 1.8px solid white;
   border-radius: 5px;
   color: white;
-  font-size: large;
+  font-size: medium;
+  transition: all ease 0.5s;
+}
+
+#buttonContainer button:hover {
+  background-color: white;
+  color: #1e1e1e;
 }
 
 #blocklyContainer {
