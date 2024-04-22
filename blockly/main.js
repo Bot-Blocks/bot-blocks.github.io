@@ -38,7 +38,7 @@ javascript.javascriptGenerator.forBlock['process_env'] = function(block, generat
   return [code, javascript.Order.NONE];
 };
 
-Blockly.Blocks['messages_messagecreate'] = {
+Blockly.Blocks['messages_messageCreate'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("When a message is sent");
