@@ -63,5 +63,5 @@ javascript.javascriptGenerator.forBlock['channel_channelid'] = function (block, 
 
     var code = `${value_channel}.id`;
 
-    return [code, Blockly.javascript.ORDER_NONE];
+    return [code, javascript.Order.NONE];
 };
