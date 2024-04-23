@@ -59,7 +59,7 @@ function saveRecoverXmlProject() {
 }
 
 function updateCode(event) {
-  if (event.type == null) event.type == 'event';
+  if (event == null) event == { type:'event' };
   if (event.type == 'viewport_change' || event.type == 'toolbox_item_select') return;
 
   localSaveCount -= 1;
