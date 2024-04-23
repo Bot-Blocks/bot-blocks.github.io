@@ -53,7 +53,7 @@ function saveRecoverXmlProject() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
   var xmlText = Blockly.Xml.domToText(xmlDom);
 
-  if (xmlText == "") return;
+  if (emptyXml(xmlText)) return;
 
   localStorage.setItem("recoverXmlProject", xmlText);
 }
