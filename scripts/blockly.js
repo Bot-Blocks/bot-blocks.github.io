@@ -186,6 +186,16 @@ function closeJavascriptCodePopup() {
   document.getElementById('javascriptcodepopup').style.display = 'none';
 }
 
+function copyJavascriptCodePopup() {
+  var textElement = document.getElementById("javascriptcodepopupCodeBlock");
+  var text = textElement.innerText;
+
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(copyText.value);
+}
+
 window.addEventListener('beforeunload', function(event) {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
   var xmlText = Blockly.Xml.domToText(xmlDom);

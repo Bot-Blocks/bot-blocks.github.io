@@ -54,18 +54,18 @@ body {
   padding: 10px;
   border-radius: 8px;
   border: 2px solid white;
-  overflow: hidden;
+  overflow: auto;
   z-index: 9999;
 }
 
 #javascriptcodepopupCodeBlock {
   margin: 0;
   display: block;
-  overflow: auto;
+  overflow: hidden;
   color: white;
 }
 
-#javascriptcodepopupClose {
+.jscpButton {
   font-size: larger;
   display: block;
   position: absolute;
