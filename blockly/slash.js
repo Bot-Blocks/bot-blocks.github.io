@@ -139,7 +139,7 @@ ${code}});\n`;
     return code;
 };
 
-Blockly.Blocks['slash_slashcommandname'] = {
+Blockly.Blocks['slash_commandname'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("command name");
@@ -150,6 +150,6 @@ Blockly.Blocks['slash_slashcommandname'] = {
     }
 };
 
-javascript.javascriptGenerator.forBlock['slash_slashcommandname'] = function (block, generator) {
+javascript.javascriptGenerator.forBlock['slash_commandname'] = function (block, generator) {
     return ['interaction.commandName', javascript.Order.NONE];
 };
