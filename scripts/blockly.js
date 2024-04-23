@@ -8,7 +8,7 @@ const DarkTheme = Blockly.Theme.defineTheme('DarkTheme', {
     flyoutForegroundColour: '#ccc',
     flyoutOpacity: 1,
     scrollbarColour: '#797979',
-    insertionMarkerColour: '#383838',
+    insertionMarkerColour: '#ffffff',
     insertionMarkerOpacity: 0.3,
     scrollbarOpacity: 0.4,
     cursorColour: '#d0d0d0',
@@ -24,7 +24,7 @@ const workspace = Blockly.inject("blocklyDiv", {
   grid: {
     spacing: 20,
     length: 3,
-    colour: "#ccc",
+    colour: "#383838",
     snap: false,
   },
   trashcan: true,

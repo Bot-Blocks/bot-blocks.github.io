@@ -17,6 +17,43 @@ javascript.javascriptGenerator.forBlock['main_bottoken'] = function(block, gener
   return code;
 };
 
+Blockly.Blocks['client_connected'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("when bot connects");
+    this.appendStatementInput("CODE")
+        .setCheck(null);
+    this.setColour(300);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['client_connected'] = function(block, generator) {
+  var statements_code = generator.statementToCode(block, 'CODE');
+
+  var code = `client.on(Events.ClientReady, async () => {
+${statements_code}});`;
+
+  return code;
+};
+
+Blockly.Blocks['client'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("bot/client");
+    this.setInputsInline(true);
+    this.setOutput(true, "Client");
+    this.setColour(300);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['client'] = function(block, generator) {
+  return ['client', javascript.Order.NONE];
+};
+
 Blockly.Blocks['process_env'] = {
   init: function() {
     this.appendValueInput("ENV")
