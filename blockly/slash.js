@@ -136,7 +136,7 @@ javascript.javascriptGenerator.forBlock['slash_received'] = function (block, gen
     var statements_code = generator.statementToCode(block, 'CODE');
     var code = `client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
-${code}});\n`;
+${statements_code}});\n`;
     return code;
 };
 
