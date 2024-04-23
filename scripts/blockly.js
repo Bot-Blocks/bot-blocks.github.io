@@ -178,7 +178,7 @@ function recoverProject() {
 }
 
 function javascriptCodePopup() {
-  document.getElementById('javascriptcodepopup').style.display = 'block';
+  document.getElementById('javascriptcodepopup').style.display = 'flex';
   document.getElementById('javascriptcodepopupCodeBlock').textContent = javascriptCode;
 }
 
