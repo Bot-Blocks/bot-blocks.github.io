@@ -104,7 +104,7 @@ Blockly.Blocks['slash_getinput'] = {
             .appendField("input named");
         this.setInputsInline(true);
         this.setOutput(true, ["String", "Number", "Boolean", "User", "Channel", "Role", "Attachment"]);
-        this.setOutputShape(0);
+        this.setOutputShape(2);
         this.setColour(220);
         this.setTooltip("");
         this.setHelpUrl("");
