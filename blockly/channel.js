@@ -27,10 +27,10 @@ javascript.javascriptGenerator.forBlock['channel_sendchannel'] = function (block
 Blockly.Blocks['channel_channelwithid'] = {
     init: function () {
         this.appendValueInput("ID")
-            .setCheck("Number")
+            .setCheck("String")
             .appendField("channel with id equal to");
         this.setInputsInline(true);
-        this.setOutput(true, null);
+        this.setOutput(true, "Channel");
         this.setColour(15);
         this.setTooltip("");
         this.setHelpUrl("");
@@ -51,7 +51,7 @@ Blockly.Blocks['channel_channelid'] = {
             .setCheck("Channel")
             .appendField("id of channel");
         this.setInputsInline(true);
-        this.setOutput(true, "Number");
+        this.setOutput(true, "String");
         this.setColour(15);
         this.setTooltip("");
         this.setHelpUrl("");
