@@ -80,5 +80,7 @@ body {
 }
 
 #jscpButtons {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
 }
