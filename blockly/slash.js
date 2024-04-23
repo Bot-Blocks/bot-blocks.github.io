@@ -21,7 +21,7 @@ javascript.javascriptGenerator.forBlock['slash_main'] = function (block, generat
   const rest = new REST().setToken(client.token);
       
   await rest.put(
-    Routes.applicationCommands(message.client.user.id),
+    Routes.applicationCommands(client.user.id),
     { body: commands },
   );
 };
