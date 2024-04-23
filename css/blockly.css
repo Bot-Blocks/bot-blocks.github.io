@@ -67,8 +67,8 @@ body {
 }
 
 .jscpButton {
-  font-size: larger;
   display: block;
+  font-size: larger;
   position: absolute;
   padding: 5px 10px;
   background-color: rgb(255, 0, 0);
@@ -76,12 +76,4 @@ body {
   border-radius: 8px;
   cursor: pointer;
   color: white;
-  margin-right: 10px;
-}
-
-#jscpButtons {
-  display: flex;
-  justify-content: left;
-  flex-direction: row;
-  background-color: aqua;
 }
