@@ -77,10 +77,12 @@ body {
   border-radius: 8px;
   cursor: pointer;
   color: white;
+  margin-right: 10px;
 }
 
 #jscpButtons {
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
   background-color: aqua;
   width: 100%;
