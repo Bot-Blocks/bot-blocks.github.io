@@ -104,6 +104,7 @@ Blockly.Blocks['slash_getinput'] = {
             .appendField("input named");
         this.setInputsInline(true);
         this.setOutput(true, ["String", "Number", "Boolean", "User", "Channel", "Role", "Attachment"]);
+        this.setOutputShape(0);
         this.setColour(220);
         this.setTooltip("");
         this.setHelpUrl("");
@@ -144,7 +145,6 @@ Blockly.Blocks['slash_commandname'] = {
         this.appendDummyInput()
             .appendField("command name");
         this.setOutput(true, "String");
-        this.setOutputShape(1);
         this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
@@ -161,6 +161,8 @@ Blockly.Blocks['slash_reply'] = {
             .setCheck(["String", "Embed"])
             .appendField("reply to command with");
         this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
         this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
