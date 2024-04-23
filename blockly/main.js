@@ -92,7 +92,7 @@ Blockly.Blocks['client_setstatus'] = {
 javascript.javascriptGenerator.forBlock['client_setstatus'] = function (block, generator) {
   var dropdown_state = block.getFieldValue('STATE');
 
-  var code = `client.setStatus('${dropdown_state}');\n`;
+  var code = `client.user.setStatus('${dropdown_state}');\n`;
 
   return code;
 };
