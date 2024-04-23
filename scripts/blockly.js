@@ -59,8 +59,10 @@ function saveRecoverXmlProject() {
 }
 
 function updateCode(event) {
-  if (event == null) event == { type:'event' };
-  if (event.type == 'viewport_change' || event.type == 'toolbox_item_select') return;
+  if (
+    event?.type ?? '' == 'viewport_change' ||
+    event?.type ?? '' == 'toolbox_item_select'
+  ) return;
 
   localSaveCount -= 1;
 
@@ -100,7 +102,7 @@ ${code}`;
 }
 
 workspace.addChangeListener(updateCode);
-updateCode();
+updateCode({ event:'event' });
 
 function saveToFile() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
@@ -142,7 +144,7 @@ function loadFromFile() {
 
         Blockly.Xml.domToWorkspace(xmlDom.documentElement, workspace);
 
-        updateCode({ type: "yourmum" });
+        updateCode({ event:'event' });
       };
 
       reader.readAsText(file);
@@ -173,7 +175,7 @@ function recoverProject() {
 
       Blockly.Xml.domToWorkspace(xmlDom.documentElement, workspace);
 
-      updateCode();
+      updateCode({ event:'event' });
     }
   }
 }
