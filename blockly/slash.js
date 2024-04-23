@@ -144,7 +144,7 @@ Blockly.Blocks['slash_commandname'] = {
         this.appendDummyInput()
             .appendField("command name");
         this.setOutput(true, "String");
-        this.setOutputShape("1");
+        this.setOutputShape(1);
         this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
