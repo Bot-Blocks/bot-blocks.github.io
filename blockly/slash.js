@@ -154,3 +154,22 @@ Blockly.Blocks['slash_commandname'] = {
 javascript.javascriptGenerator.forBlock['slash_commandname'] = function (block, generator) {
     return ['interaction.commandName', javascript.Order.NONE];
 };
+
+Blockly.Blocks['slash_reply'] = {
+    init: function () {
+        this.appendValueInput("TEXT")
+            .setCheck(["String", "Embed"])
+            .appendField("reply to command with");
+        this.setInputsInline(true);
+        this.setColour(240);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_reply'] = function (block, generator) {
+    var value_text = generator.valueToCode(block, 'TEXT', javascript.Order.ATOMIC);
+
+    var code = `interaction.reply(${value_text});\n`;
+    return code;
+};
