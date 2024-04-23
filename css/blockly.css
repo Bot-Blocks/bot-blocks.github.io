@@ -73,7 +73,7 @@ body {
   top: 5px;
   right: 5px;
   padding: 5px 10px;
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgb(255, 0, 0);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -83,8 +83,6 @@ body {
 
 #jscpButtons {
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
   background-color: aqua;
-  width: 100%;
 }
