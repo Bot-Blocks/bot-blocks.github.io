@@ -54,14 +54,14 @@ body {
   padding: 10px;
   border-radius: 8px;
   border: 2px solid white;
-  overflow: auto;
+  overflow: hidden;
   z-index: 9999;
 }
 
 #javascriptcodepopupCodeBlock {
   margin: 0;
   display: block;
-  overflow: hidden;
+  overflow: auto;
   color: white;
 }
 
