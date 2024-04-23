@@ -8,7 +8,7 @@ const DarkTheme = Blockly.Theme.defineTheme('DarkTheme', {
     flyoutForegroundColour: '#ccc',
     flyoutOpacity: 1,
     scrollbarColour: '#797979',
-    insertionMarkerColour: '#fff',
+    insertionMarkerColour: '#383838',
     insertionMarkerOpacity: 0.3,
     scrollbarOpacity: 0.4,
     cursorColour: '#d0d0d0',
@@ -202,3 +202,5 @@ window.addEventListener('beforeunload', function(event) {
 
   event.preventDefault();
 });
+
+workspace.addChangeListener(Blockly.Events.disableOrphans);
