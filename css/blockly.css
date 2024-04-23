@@ -69,6 +69,7 @@ body {
 #jscpbs {
   display: flex;
   flex-direction: row;
+  margin-bottom: 2px;
 }
 
 .jscpButton {
