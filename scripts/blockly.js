@@ -92,22 +92,14 @@ const client = new Discord.Client({
 });
 
 client.on(Events.ClientReady, () => {
-  console.log(\`I'm connected as \${client.user.username}!\`);
+  console.log(\`I'm connected as \${client.user.tag}!\`);
 });
 
 ${code}`;
 }
 
-function runCode() {
-  try {
-    eval(Blockly.JavaScript.workspaceToCode(workspace));
-  } catch (err) {
-    window.alert(err);
-  }
-}
-
 workspace.addChangeListener(updateCode);
-updateCode({ type: "yourmum" });
+updateCode();
 
 function saveToFile() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
@@ -180,7 +172,7 @@ function recoverProject() {
 
       Blockly.Xml.domToWorkspace(xmlDom.documentElement, workspace);
 
-      updateCode({ type: "yourmum" });
+      updateCode();
     }
   }
 }
