@@ -78,3 +78,7 @@ body {
   cursor: pointer;
   color: white;
 }
+
+#jscpButtons {
+  display: inline-flex;
+}
