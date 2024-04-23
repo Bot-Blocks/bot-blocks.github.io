@@ -13,7 +13,7 @@ Blockly.Blocks['slash_main'] = {
 javascript.javascriptGenerator.forBlock['slash_main'] = function (block, generator) {
     var statements_cmds = generator.statementToCode(block, 'CMDS');
 
-    var code = `let setCommands = async function() {
+    var code = `client.on(Events.ClientReady, async () => {
   const { REST, Routes } = require('discord.js');
       
   const commands = [${statements_cmds}];
@@ -24,8 +24,7 @@ javascript.javascriptGenerator.forBlock['slash_main'] = function (block, generat
     Routes.applicationCommands(client.user.id),
     { body: commands },
   );
-}
-setCommands()\n`;
+});\n`;
 
     return code;
 };
