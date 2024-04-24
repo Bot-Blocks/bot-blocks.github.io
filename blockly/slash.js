@@ -44,8 +44,8 @@ Blockly.Blocks['slash_create'] = {
             .appendField("inputs");
         this.setInputsInline(false);
         this.setColour(230);
-        this.setPreviousStatement(true, ['slash_main', 'slash_create']);
-        this.setNextStatement(true, ['slash_main', 'slash_create']);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -76,8 +76,8 @@ Blockly.Blocks['slash_input'] = {
             .appendField("required");
         this.setInputsInline(false);
         this.setColour(220);
-        this.setPreviousStatement(true, ['slash_create', 'slash-input']);
-        this.setNextStatement(true, ['slash_create', 'slash-input']);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -154,12 +154,14 @@ javascript.javascriptGenerator.forBlock['slash_commandname'] = function (block, 
     return ['interaction.commandName', javascript.Order.NONE];
 };
 
-Blockly.Blocks['slash_reply'] = {
+Blockly.Blocks['slash_replyz'] = {
     init: function () {
         this.appendValueInput("TEXT")
             .setCheck(["String", "Embed"])
             .appendField("reply to command with");
-        this.setInputsInline(true);
+        this.appendValueInput("EPHEMERAL")
+            .setCheck("Boolean")
+            .appendField("hidden reply?");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(240);
@@ -170,8 +172,9 @@ Blockly.Blocks['slash_reply'] = {
 
 javascript.javascriptGenerator.forBlock['slash_reply'] = function (block, generator) {
     var value_text = generator.valueToCode(block, 'TEXT', javascript.Order.ATOMIC);
+    var value_ephemeral = generator.valueToCode(block, 'EPHEMERAL', javascript.Order.ATOMIC);
 
-    var code = `interaction.reply(${value_text});\n`;
+    var code = `interaction.reply({ content:${value_text}, ephemeral:${value_ephemeral} });\n`;
     return code;
 };
 
