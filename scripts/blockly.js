@@ -9,7 +9,10 @@ function registerContextMenuOptions() {
       }
     },
     callback: function(scope) {
-      navigator.clipboard.writeText(Blockly.JavaScript.blockToCode());
+      const blockCode = Blockly.JavaScript.blockToCode(scope.block);
+
+      navigator.clipboard.writeText(blockCode);
+      console.log(String(blockCode));
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'copy_js_block_code',
