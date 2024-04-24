@@ -126,3 +126,19 @@ Blockly.Blocks['message_channel'] = {
 javascript.javascriptGenerator.forBlock['message_channel'] = function (block, generator) {
   return ['message.channel', javascript.Order.NONE];
 };
+
+Blockly.Blocks['message_guild'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("message server");
+    this.setInputsInline(true);
+    this.setOutput(true, "Guild");
+    this.setColour(15);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+javascript.javascriptGenerator.forBlock['message_guild'] = function (block, generator) {
+  return ['message.guild', javascript.Order.NONE];
+};

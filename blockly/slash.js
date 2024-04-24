@@ -174,3 +174,67 @@ javascript.javascriptGenerator.forBlock['slash_reply'] = function (block, genera
     var code = `interaction.reply(${value_text});\n`;
     return code;
 };
+
+Blockly.Blocks['slash_user'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("command author");
+        this.setInputsInline(true);
+        this.setOutput(true, "String");
+        this.setColour(210);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_user'] = function (block, generator) {
+    return ['interaction.user', javascript.Order.NONE];
+};
+
+Blockly.Blocks['slash_member'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("command member");
+        this.setInputsInline(true);
+        this.setOutput(true, "Member");
+        this.setColour(45);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_member'] = function (block, generator) {
+    return ['interaction.member', javascript.Order.NONE];
+};
+
+Blockly.Blocks['slash_channel'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("command channel");
+        this.setInputsInline(true);
+        this.setOutput(true, "Channel");
+        this.setColour(15);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_channel'] = function (block, generator) {
+    return ['interaction.channel', javascript.Order.NONE];
+};
+
+Blockly.Blocks['slash_guild'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("command server");
+        this.setInputsInline(true);
+        this.setOutput(true, "Guild");
+        this.setColour(15);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_guild'] = function (block, generator) {
+    return ['interaction.guild', javascript.Order.NONE];
+};
