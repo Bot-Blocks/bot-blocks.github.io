@@ -297,7 +297,18 @@
       <block type="slash_create"></block>
       <block type="slash_input"></block>
       <block type="slash_received"></block>
-      <block type="slash_reply"></block>
+      <block type="slash_reply">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="EPHEMERAL">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+        </value>
+      </block>
       <block type="slash_getinput"></block>
       <block type="slash_commandname"></block>
       <block type="slash_user"></block>
