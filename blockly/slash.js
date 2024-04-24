@@ -154,7 +154,7 @@ javascript.javascriptGenerator.forBlock['slash_commandname'] = function (block, 
     return ['interaction.commandName', javascript.Order.NONE];
 };
 
-Blockly.Blocks['slash_replyz'] = {
+Blockly.Blocks['slash_reply'] = {
     init: function () {
         this.appendValueInput("TEXT")
             .setCheck(["String", "Embed"])
