@@ -3,7 +3,7 @@ Blockly.Blocks['slash_main'] = {
         this.appendDummyInput()
             .appendField("create slash commands");
         this.appendStatementInput("CMDS")
-            .setCheck("slash-create");
+            .setCheck(null);
         this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
