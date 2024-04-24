@@ -268,6 +268,7 @@
     
     <category name="Base" colour="#a55ba5">
       <block type="main_bottoken"></block>
+      <sep gap="40"></sep>
       <block type="client_connected"></block>
       <block type="client"></block>
       <block type="client_setstatus"></block>
@@ -276,11 +277,10 @@
     </category>
 
     <category name="Message" colour="#5b93a5">
-      <label text="messages handling"></label>
       <block type="message_received"></block>
       <block type="message_receivednobot"></block>
       <block type="message_reply"></block>
-      <label text="Message Properties"></label>
+      <sep gap="40"></sep>
       <block type="message_content"></block>
       <block type="message_user"></block>
       <block type="message_member"></block>
@@ -295,11 +295,10 @@
     </category>
 
     <category name="Slash Commands" colour="#5b5ba5">
-      <label text="Slash commands creation"></label>
       <block type="slash_main"></block>
       <block type="slash_create"></block>
       <block type="slash_input"></block>
-      <label text="Commands handling"></label>
+      <sep gap="40"></sep>
       <block type="slash_received"></block>
       <block type="slash_reply">
         <value name="TEXT">
@@ -313,7 +312,6 @@
           </shadow>
         </value>
       </block>
-      <label text="If the reply exists"></label>
       <block type="slash_editreply">
         <value name="TEXT">
           <shadow type="text">
@@ -322,7 +320,7 @@
         </value>
       </block>
       <block type="slash_deletereply"></block>
-      <label text="Command Properties"></label>
+      <sep gap="40"></sep>
       <block type="slash_getinput"></block>
       <block type="slash_commandname"></block>
       <block type="slash_user"></block>
