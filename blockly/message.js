@@ -133,7 +133,7 @@ Blockly.Blocks['message_guild'] = {
       .appendField("message server");
     this.setInputsInline(true);
     this.setOutput(true, "Guild");
-    this.setColour(15);
+    this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
   }
