@@ -44,8 +44,8 @@ Blockly.Blocks['slash_create'] = {
             .appendField("inputs");
         this.setInputsInline(false);
         this.setColour(230);
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
+        this.setPreviousStatement(true, ['slash_main', 'slash_create']);
+        this.setNextStatement(true, ['slash_main', 'slash_create']);
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -76,8 +76,8 @@ Blockly.Blocks['slash_input'] = {
             .appendField("required");
         this.setInputsInline(false);
         this.setColour(220);
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
+        this.setPreviousStatement(true, ['slash_create', 'slash-input']);
+        this.setNextStatement(true, ['slash_create', 'slash-input']);
         this.setTooltip("");
         this.setHelpUrl("");
     }
