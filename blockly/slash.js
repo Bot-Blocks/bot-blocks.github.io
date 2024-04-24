@@ -241,3 +241,40 @@ Blockly.Blocks['slash_guild'] = {
 javascript.javascriptGenerator.forBlock['slash_guild'] = function (block, generator) {
     return ['interaction.guild', javascript.Order.NONE];
 };
+
+Blockly.Blocks['slash_editreply'] = {
+    init: function () {
+        this.appendValueInput("TEXT")
+            .setCheck(["String", "Embed"])
+            .appendField("edit command reply to");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(240);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_editreply'] = function (block, generator) {
+    var value_text = generator.valueToCode(block, 'TEXT', javascript.Order.ATOMIC);
+
+    return `interaction.editReply(${value_text})`;
+};
+
+Blockly.Blocks['slash_deletereply'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("delete command reply");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(240);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_deletereply'] = function (block, generator) {
+    return 'interaction.deleteReply()';
+};
