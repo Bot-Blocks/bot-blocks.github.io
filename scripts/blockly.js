@@ -1,3 +1,26 @@
+function registerContextMenuOptions() {
+  const workspaceItem = {
+    displayText: 'Copy JavaScript Code',
+    preconditionFn: function(scope) {
+      if (scope.block.disabled) {
+        return 'disabled';
+      } else {
+        return 'enabled';
+      }
+    },
+    callback: function(scope) {
+      navigator.clipboard.writeText(Blockly.JavaScript.blockToCode());
+    },
+    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
+    id: 'copy_js_block_code',
+    weight: 100,
+  };
+
+  Blockly.ContextMenuRegistry.registry.register(workspaceItem);
+}
+
+registerContextMenuOptions();
+
 const DarkTheme = Blockly.Theme.defineTheme('DarkTheme', {
   base: Blockly.Themes.Classic,
   componentStyles: {
