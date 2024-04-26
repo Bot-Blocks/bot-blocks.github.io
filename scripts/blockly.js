@@ -1,3 +1,5 @@
+hljs.highlightAll();
+
 function registerContextMenuOptions() {
   const workspaceItem = {
     displayText: 'Copy JavaScript Code',
@@ -131,12 +133,6 @@ function saveToFile() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
   var xmlText = Blockly.Xml.domToText(xmlDom);
 
-  var fileName = prompt("Enter a file name:", "Blockly");
-
-  if (fileName === null) {
-    return;
-  }
-
   fileName += ".bbw"; // File format
 
   var blob = new Blob([xmlText], { type: "application/xml" });
@@ -193,7 +189,7 @@ function recoverProject() {
   if (confirmRecover) {
     const recoverData = localStorage.getItem("recoverXmlProject");
 
-    if (recoverData == null) {
+    if (!recoverData) {
       return window.alert("Recovered project was not found. No changes were made");
     } else if (emptyXml(recoverData)) {
       return window.alert("Recovered project is empty. No changes were made");

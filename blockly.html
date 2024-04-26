@@ -14,6 +14,9 @@
   <script src="https://unpkg.com/@blockly/theme-dark@6.0.5/dist/index.js"></script>
 
   <link rel="stylesheet" href="css/blockly.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
 </head>
 
 <body>
@@ -343,12 +346,12 @@
 
   <div id="javascriptcodepopup">
     <div id="jscpbs">
-      <button class="jscpButton" onclick="closeJavascriptCodePopup()">Close</button>
-      <button class="jscpButton" onclick="copyJavascriptCodePopup()">Copy</button>
+      <button class="jscpButton" style="background-color:rgb(255, 46, 46)" onclick="closeJavascriptCodePopup()">Close</button>
+      <button class="jscpButton" style="background-color:rgb(46, 137, 255)" onclick="copyJavascriptCodePopup()">Copy</button>
     </div>
-    <pre id="javascriptcodepopupCodeBlock">
+    <code><pre id="javascriptcodepopupCodeBlock">
       'If you see this, something probably broke'
-    </pre>
+    </pre></code>
   </div>
 
   <script src="scripts/blockly.js"></script>

@@ -75,7 +75,6 @@ body {
 .jscpButton {
   font-size: larger;
   padding: 5px 10px;
-  background-color: rgb(255, 0, 0);
   border: none;
   border-radius: 8px;
   cursor: pointer;
