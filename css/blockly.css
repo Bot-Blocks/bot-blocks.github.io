@@ -15,10 +15,11 @@ body {
 }
 
 #buttonContainer button {
-  padding: 3px auto;
+  padding: 3px 7px;
   background-color: #1e1e1e;
   border: 2px solid white;
-  border-radius: 5px;
+  border-radius: 8px;
+  cursor: pointer;
   color: white;
   font-size: medium;
   transition: all ease 0.2s;
@@ -93,12 +94,31 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  color: white;
   margin-right: 8px;
   box-shadow: 0;
   transition: all ease 0.2s;
 }
 
+#jscpB1 {
+  background-color: rgb(255, 46, 46);
+  color: white
+}
+
+#jscpB1:hover {
+  background-color: white;
+  color: rgb(255, 46, 46);
+}
+
+#jscpB2 {
+  background-color: rgb(46, 102, 255);
+  color: white
+}
+
+#jscpB2:hover {
+  background-color: white;
+  color: rgb(46, 102, 255);
+}
+
 .jscpButton:hover {
-  box-shadow: 0px 0px 10px black;
+  box-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
