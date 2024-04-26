@@ -80,7 +80,8 @@ body {
   left: 20px;
   right: 20px;
   max-width: calc(100% - 40px);
-  max-height: 60px;
+  max-height: 40px;
+  height: 40px;
   display: flex;
   flex-direction: row;
   z-index: 10001;
@@ -88,7 +89,7 @@ body {
 
 .jscpButton {
   font-size: larger;
-  padding: 6px auto;
+  padding: 7px auto;
   border: none;
   border-radius: 8px;
   cursor: pointer;
