@@ -1,7 +1,7 @@
 Blockly.Blocks['slash_main'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("create slash commands");
+            .appendField("create global slash commands");
         this.appendStatementInput("CMDS")
             .setCheck(null);
         this.setColour(240);
@@ -39,13 +39,16 @@ Blockly.Blocks['slash_create'] = {
         this.appendValueInput("DESCRIPTION")
             .setCheck("String")
             .appendField("description");
+        this.appendValueInput("DMS")
+            .setCheck("Boolean")
+            .appendField("available in DMs?");
         this.appendStatementInput("INPUTS")
             .setCheck(null)
             .appendField("inputs");
         this.setInputsInline(false);
-        this.setColour(230);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
+        this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -54,8 +57,11 @@ Blockly.Blocks['slash_create'] = {
 javascript.javascriptGenerator.forBlock['slash_create'] = function (block, generator) {
     var value_name = generator.valueToCode(block, 'NAME', javascript.Order.ATOMIC);
     var value_description = generator.valueToCode(block, 'DESCRIPTION', javascript.Order.ATOMIC);
+    var value_dms = generator.valueToCode(block, 'DMS', javascript.Order.ATOMIC) || false;
     var statements_inputs = generator.statementToCode(block, 'INPUTS');
-    var code = `new SlashCommandBuilder().setName(${value_name}).setDescription(${value_description})${statements_inputs},`;
+
+    var code = `new SlashCommandBuilder().setName(${value_name}).setDescription(${value_description}).setDMPermission(${value_dms})${statements_inputs},`;
+    
     return code;
 };
 
@@ -73,7 +79,7 @@ Blockly.Blocks['slash_input'] = {
             .appendField("description");
         this.appendValueInput("REQUIRED")
             .setCheck("Boolean")
-            .appendField("required");
+            .appendField("required?");
         this.setInputsInline(false);
         this.setColour(220);
         this.setPreviousStatement(true, null);

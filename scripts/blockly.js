@@ -1,5 +1,3 @@
-hljs.highlightAll();
-
 function registerContextMenuOptions() {
   const workspaceItem = {
     displayText: 'Copy JavaScript Code',
