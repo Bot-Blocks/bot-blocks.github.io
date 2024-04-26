@@ -21,7 +21,7 @@ body {
   border-radius: 5px;
   color: white;
   font-size: medium;
-  transition: all ease 0.3s;
+  transition: all ease 0.2s;
 }
 
 #buttonContainer button:hover {
@@ -80,8 +80,8 @@ body {
   left: 20px;
   right: 20px;
   max-width: calc(100% - 40px);
-  max-height: 40px;
-  height: 40px;
+  max-height: 35px;
+  height: 35px;
   display: flex;
   flex-direction: row;
   z-index: 10001;
@@ -89,10 +89,16 @@ body {
 
 .jscpButton {
   font-size: larger;
-  padding: 7px auto;
+  padding: 7px 14px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   color: white;
   margin-right: 8px;
+  transition: all ease 0.2s;
+}
+
+.jscpButton:hover {
+  background-color: white;
+  color: black;
 }
