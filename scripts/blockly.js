@@ -141,7 +141,7 @@ function saveToFile() {
 
   var blob = new Blob([xmlText], { type: "application/xml" });
 
-  const fileHandle = await window.showSaveFilePicker({
+  const fileHandle = window.showSaveFilePicker({
     suggestedName: "botblocks",
     types: [{
       description: "Bot Blocks Workspace",
@@ -149,9 +149,9 @@ function saveToFile() {
     }]
   });
 
-  const fileStream = await fileHandle.createWritable();
+  const fileStream = fileHandle.createWritable();
 
-  await fileStream.write(blob);
+  fileStream.write(blob);
 }
 
 function loadFromFile() {
