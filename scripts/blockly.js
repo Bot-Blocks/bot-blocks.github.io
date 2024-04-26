@@ -131,11 +131,9 @@ function saveToFile() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
   var xmlText = Blockly.Xml.domToText(xmlDom);
 
-  fileName += ".bbw"; // File format
-
   var blob = new Blob([xmlText], { type: "application/xml" });
 
-  const fileHandle = window.showSaveFilePicker({
+  const filePick = window.showSaveFilePicker({
     suggestedName: "botblocks",
     types: [{
       description: "Bot Blocks Workspace",
@@ -143,9 +141,9 @@ function saveToFile() {
     }]
   });
 
-  const fileStream = fileHandle.createWritable();
+  const fileWritable = filePick.createWritable();
 
-  fileStream.write(blob);
+  fileWritable.write(blob);
 }
 
 function loadFromFile() {
