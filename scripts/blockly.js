@@ -127,13 +127,12 @@ ${code}`;
 workspace.addChangeListener(updateCode);
 updateCode({ event:'event' });
 
-function saveToFile() {
+async function saveToFile() {
   var xmlDom = Blockly.Xml.workspaceToDom(workspace);
   var xmlText = Blockly.Xml.domToText(xmlDom);
-
   var blob = new Blob([xmlText], { type: "application/xml" });
 
-  const filePick = window.showSaveFilePicker({
+  const fileHandle = await window.showSaveFilePicker({
     suggestedName: "botblocks",
     types: [{
       description: "Bot Blocks Workspace",
@@ -141,9 +140,11 @@ function saveToFile() {
     }]
   });
 
-  const fileWritable = filePick.createWritable();
+  console.log(fileHandle)
 
-  fileWritable.write(blob);
+  const writableStream = await fileHandle.createWritable();
+  await writableStream.write(blob);
+  await writableStream.close();
 }
 
 function loadFromFile() {

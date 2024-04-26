@@ -296,7 +296,23 @@
 
     <category name="Slash Commands" colour="#5b5ba5">
       <block type="slash_main"></block>
-      <block type="slash_create"></block>
+      <block type="slash_create">
+        <value name="NAME">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="DESCRIPTION">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="DMS">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+        </value>
+      </block>
       <block type="slash_input"></block>
       <sep gap="50"></sep>
       <block type="slash_received"></block>

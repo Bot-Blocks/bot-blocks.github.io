@@ -10,13 +10,13 @@ body {
 }
 
 #buttonContainer {
-  margin: 3px;
-  background-color: #1e1e1e;
+  background-color: #4aa391;
+  padding: 4px;
 }
 
 #buttonContainer button {
-  padding: 3px 7px;
-  background-color: #1e1e1e;
+  padding: 4px 7px;
+  background-color: #3a7e70;
   border: 2px solid white;
   border-radius: 8px;
   cursor: pointer;
@@ -27,7 +27,8 @@ body {
 
 #buttonContainer button:hover {
   background-color: white;
-  color: #1e1e1e;
+  color: #3a7e70;
+  border-color: #3a7e70;
 }
 
 #blocklyContainer {
@@ -50,7 +51,7 @@ body {
   bottom: 0px;
   max-width: 100%;
   max-height: 100%;
-  background-color: #20202057;
+  background-color: #202020c0;
   overflow: auto;
   z-index: 9999;
   flex-direction: column;
