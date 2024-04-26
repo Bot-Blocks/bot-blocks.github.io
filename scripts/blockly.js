@@ -140,11 +140,18 @@ function saveToFile() {
   fileName += ".bbw"; // File format
 
   var blob = new Blob([xmlText], { type: "application/xml" });
-  var link = document.createElement("a");
-  link.href = window.URL.createObjectURL(blob);
-  link.download = fileName;
-  link.click();
-  link.remove();
+
+  const fileHandle = await window.showSaveFilePicker({
+    suggestedName: "botblocks",
+    types: [{
+      description: "Bot Blocks Workspace",
+      accept: { "application/xml": [".bbw"] },
+    }]
+  });
+
+  const fileStream = await fileHandle.createWritable();
+
+  await fileStream.write(blob);
 }
 
 function loadFromFile() {
