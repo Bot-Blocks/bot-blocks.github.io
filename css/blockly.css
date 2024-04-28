@@ -1,3 +1,7 @@
+* {
+  text-rendering: optimizeSpeed;
+}
+
 body {
   margin: 0;
   overflow: hidden;
@@ -10,12 +14,16 @@ body {
 }
 
 #buttonContainer {
+  display: flex;
   background-color: #4aa391;
   padding: 4px;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
 }
 
 #buttonContainer button {
-  padding: 4px 7px;
+  padding: 6px 8px;
   background-color: #3a7e70;
   border: 2px solid white;
   border-radius: 8px;
@@ -23,6 +31,7 @@ body {
   color: white;
   font-size: medium;
   transition: all ease 0.2s;
+  margin-right: 9px;
 }
 
 #buttonContainer button:hover {
@@ -42,7 +51,7 @@ body {
   overflow-y: auto;
 }
 
-#javascriptcodepopup {
+.popup {
   display: none;
   position: fixed;
   top: 0px;
@@ -60,10 +69,10 @@ body {
 #javascriptcodepopupCodeBlock {
   margin: 0;
   display: block;
-  overflow: hidden;
+  overflow: auto;
   color: white;
   position: fixed;
-  top: 60px;
+  top: 65px;
   left: 20px;
   right: 20px;
   bottom: 20px;
@@ -71,9 +80,59 @@ body {
   border-radius: 8px;
   border: 2px solid white;
   max-width: calc(100% - 40px);
-  max-height: calc(100% - 80px);
+  max-height: calc(100% - 85px);
   background-color: #211e3b;
   z-index: 10000;
+}
+
+#alertpopupcontentdiv {
+  margin: 0;
+  display: block;
+  overflow: auto;
+  color: black;
+  position: fixed;
+  top: 15%;
+  left: 15%;
+  right: 15%;
+  bottom: 15%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(180, 180, 180);
+  max-width: 70%;
+  max-height: 70%;
+  background-color: white;
+  z-index: 10000;
+  transition: all ease 0.2s;
+}
+
+#alertpopupcontentP {
+  margin: 0;
+  margin-left: 25px;
+  margin-right: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  color: black;
+  font-size: xx-large;
+  text-align: center;
+  height: calc(100% - 126px);
+  z-index: 10000;
+}
+
+#alertpopupbuttonsdiv {
+  margin: 0;
+  padding: 30px;
+  z-index: 100001;
+  display: block;
+  overflow: hidden;
+  color: black;
+  font-size: xx-large;
+  text-align: center;
+}
+
+#alertpopupbuttonsdiv button {
+  padding: 11px 65px;
 }
 
 #jscpbs {
@@ -82,16 +141,14 @@ body {
   left: 20px;
   right: 20px;
   max-width: calc(100% - 40px);
-  max-height: 35px;
-  height: 35px;
   display: flex;
   flex-direction: row;
   z-index: 10001;
 }
 
-.jscpButton {
+.popupButton {
   font-size: larger;
-  padding: 7px 14px;
+  padding: 7px 19px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -100,26 +157,39 @@ body {
   transition: all ease 0.2s;
 }
 
-#jscpB1 {
+.redButton {
   background-color: rgb(255, 46, 46);
   color: white
 }
 
-#jscpB1:hover {
-  background-color: white;
-  color: rgb(255, 46, 46);
+.redButton:hover {
+  box-shadow: 0px 0px 10px rgb(255, 77, 77);
+  background-color: rgb(255, 77, 77);
+  color: white
 }
 
-#jscpB2 {
+.blueButton {
   background-color: rgb(46, 102, 255);
   color: white
 }
 
-#jscpB2:hover {
-  background-color: white;
-  color: rgb(46, 102, 255);
+.blueButton:hover {
+  box-shadow: 0px 0px 10px rgb(95, 137, 255);
+  background-color: rgb(95, 137, 255);
+  color: white
 }
 
-.jscpButton:hover {
-  box-shadow: 0px 0px 10px rgb(255, 255, 255);
+#bbicon {
+  width: 50px;
+  height: 50px;
+  margin-right: 9px;
+}
+
+@keyframes appearIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

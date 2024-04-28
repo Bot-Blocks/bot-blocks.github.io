@@ -45,6 +45,7 @@ javascript.javascriptGenerator.forBlock['channel_channelwithid'] = function (blo
     return [code, javascript.Order.NONE];
 };
 
+// deprecated
 Blockly.Blocks['channel_channelid'] = {
     init: function () {
         this.appendValueInput("CHANNEL")
@@ -58,10 +59,59 @@ Blockly.Blocks['channel_channelid'] = {
     }
 };
 
+// deprecated
 javascript.javascriptGenerator.forBlock['channel_channelid'] = function (block, generator) {
     var value_channel = generator.valueToCode(block, 'CHANNEL', javascript.Order.ATOMIC);
 
     var code = `${value_channel}.id`;
+
+    return [code, javascript.Order.NONE];
+};
+
+Blockly.Blocks['channel_properties'] = {
+    init: function () {
+        this.appendValueInput("CHANNEL")
+            .setCheck("Channel")
+            .appendField(new Blockly.FieldDropdown([["name", "name"], ["id", "id"], ["position", "position"], ["type", "type"], ["url", "url"], ["last message", "lastMessage"], ["category", "parent"], ["slowmode", "rateLimitPerUser"], ["creation date", "createdAt"]]), "PROPERTY")
+            .appendField("of channel");
+        this.setInputsInline(true);
+        this.setOutput(true, ["String", "Number", "Message", "Category", "Date"]);
+        this.setColour(15);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['channel_properties'] = function (block, generator) {
+    var dropdown_property = block.getFieldValue('PROPERTY');
+    var value_channel = generator.valueToCode(block, 'CHANNEL', javascript.Order.ATOMIC);
+
+    var code = `${value_channel}.${dropdown_property}`;
+
+    return [code, javascript.Order.NONE];
+};
+
+Blockly.Blocks['channel_boolean'] = {
+    init: function () {
+        this.appendValueInput("CHANNEL")
+            .setCheck("Channel")
+            .appendField("is channel");
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldDropdown([["a text channel", "isTextBased()"], ["a voice channel", "isVoiceBased()"], ["a thread", "isThread()"], ["viewable by the bot", "viewable"], ["manageable by the bot", "manageable"], ["deletable by the bot", "deletable"], ["partial", "partial"]]), "PROPERTY")
+            .appendField("?");
+        this.setInputsInline(true);
+        this.setOutput(true, "Boolean");
+        this.setColour(15);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['channel_boolean'] = function (block, generator) {
+    var value_channel = generator.valueToCode(block, 'CHANNEL', javascript.Order.ATOMIC);
+    var dropdown_property = block.getFieldValue('PROPERTY');
+
+    var code = `${value_channel}.${dropdown_property}`;
 
     return [code, javascript.Order.NONE];
 };

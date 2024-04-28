@@ -44,11 +44,11 @@ Blockly.Blocks['slash_create'] = {
             .appendField("available in DMs?");
         this.appendStatementInput("INPUTS")
             .setCheck(null)
-            .appendField("inputs");
+            .appendField("(?) inputs");
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(240);
+        this.setColour(230);
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -61,7 +61,7 @@ javascript.javascriptGenerator.forBlock['slash_create'] = function (block, gener
     var statements_inputs = generator.statementToCode(block, 'INPUTS');
 
     var code = `new SlashCommandBuilder().setName(${value_name}).setDescription(${value_description}).setDMPermission(${value_dms})${statements_inputs},`;
-    
+
     return code;
 };
 
@@ -79,11 +79,13 @@ Blockly.Blocks['slash_input'] = {
             .appendField("description");
         this.appendValueInput("REQUIRED")
             .setCheck("Boolean")
-            .appendField("required?");
-        this.setInputsInline(false);
-        this.setColour(220);
+            .appendField("is required?");
+        this.appendStatementInput("CHOICES")
+            .setCheck(null)
+            .appendField("(?) choices");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
+        this.setColour(220);
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -94,8 +96,14 @@ javascript.javascriptGenerator.forBlock['slash_input'] = function (block, genera
     var name = generator.valueToCode(block, 'NAME', javascript.Order.ATOMIC) || 'name';
     var description = generator.valueToCode(block, 'DESCRIPTION', javascript.Order.ATOMIC) || 'description';
     var required = generator.valueToCode(block, 'REQUIRED', javascript.Order.ATOMIC) || false;
+    var statements_choices = generator.statementToCode(block, 'CHOICES');
 
-    return `.add${type}Option(option => option.setName(${name}).setDescription(${description}).setRequired(${required}))`;
+    var code = `.add${type}Option(option => option.setName(${name}).setDescription(${description}).setRequired(${required}))`;
+
+    if (statements_choices != '') {
+        code += `.addChoices(${statements_choices})`;
+    }
+
     return code;
 };
 
@@ -128,7 +136,7 @@ javascript.javascriptGenerator.forBlock['slash_getinput'] = function (block, gen
 Blockly.Blocks['slash_received'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("when slash command runs");
+            .appendField("when a slash command runs");
         this.appendStatementInput("CODE")
             .setCheck(null);
         this.setColour(240);
@@ -148,7 +156,7 @@ ${statements_code}});\n`;
 Blockly.Blocks['slash_commandname'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("command name");
+            .appendField("slash command name");
         this.setOutput(true, "String");
         this.setColour(240);
         this.setTooltip("");
@@ -164,7 +172,7 @@ Blockly.Blocks['slash_reply'] = {
     init: function () {
         this.appendValueInput("TEXT")
             .setCheck(["String", "Embed"])
-            .appendField("reply to command with");
+            .appendField("reply to slash command with");
         this.appendValueInput("EPHEMERAL")
             .setCheck("Boolean")
             .appendField("hidden reply?");
@@ -187,7 +195,7 @@ javascript.javascriptGenerator.forBlock['slash_reply'] = function (block, genera
 Blockly.Blocks['slash_user'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("command author");
+            .appendField("slash command author");
         this.setInputsInline(true);
         this.setOutput(true, "String");
         this.setColour(210);
@@ -203,7 +211,7 @@ javascript.javascriptGenerator.forBlock['slash_user'] = function (block, generat
 Blockly.Blocks['slash_member'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("command member");
+            .appendField("slash command member");
         this.setInputsInline(true);
         this.setOutput(true, "Member");
         this.setColour(45);
@@ -283,4 +291,30 @@ Blockly.Blocks['slash_deletereply'] = {
 
 javascript.javascriptGenerator.forBlock['slash_deletereply'] = function (block, generator) {
     return 'interaction.deleteReply()';
+};
+
+Blockly.Blocks['slash_inputchoice'] = {
+    init: function () {
+        this.appendValueInput("NAME")
+            .setCheck("String")
+            .appendField("choice display");
+        this.appendValueInput("VALUE")
+            .setCheck("String")
+            .appendField("value");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(210);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_inputchoice'] = function (block, generator) {
+    var value_name = generator.valueToCode(block, 'NAME', javascript.Order.ATOMIC);
+    var value_value = generator.valueToCode(block, 'VALUE', javascript.Order.ATOMIC);
+
+    var code = `{name:${value_name},value:${value_value}},`;
+
+    return code;
 };

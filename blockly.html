@@ -12,12 +12,15 @@
   <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
   <script src="https://unpkg.com/@blockly/workspace-backpack@5.3.4/dist/index.js"></script>
   <script src="https://unpkg.com/@blockly/theme-dark@6.0.5/dist/index.js"></script>
+  <script src="https://unpkg.com/@blockly/field-colour-hsv-sliders@4.2.5/dist/index.js"></script>
+  <script src="https://unpkg.com/@blockly/shadow-block-converter"></script>
 
   <link rel="stylesheet" href="css/blockly.css">
 </head>
 
 <body>
   <div id="buttonContainer">
+    <img id="bbicon" src="static/icons/icon.png">
     <button id="saveFile" onclick="saveToFile()">Save To File</button>
     <button id="loadFile" onclick="loadFromFile()">Load From File</button>
     <button id="recoverProject" onclick="recoverProject()">Recover Project</button>
@@ -130,6 +133,7 @@
 
     <category name="Text" colour="#5ba58c">
       <block type="text"></block>
+      <block type="text_multilineinput"></block>
       <block type="text_newline"></block>
       <block type="text_length">
         <value name="VALUE">
@@ -239,6 +243,7 @@
 
     <category name="Colour" colour="#a5745b">
       <block type="colour_picker"></block>
+      <block type="colour_hsv_sliders"></block>
       <block type="colour_random"></block>
       <block type="colour_rgb"></block>
       <block type="colour_blend">
@@ -291,7 +296,15 @@
     <category name="Channel" colour="#a56d5b">
       <block type="channel_sendchannel"></block>
       <block type="channel_channelwithid"></block>
-      <block type="channel_channelid"></block>
+      <block type="channel_properties"></block>
+      <block type="channel_boolean"></block>
+    </category>
+
+    <category name="Server" colour="#a55b5b">
+      <block type="server_getbyid"></block>
+      <block type="server_properties"></block>
+      <block type="server_disableinvites"></block>
+      <block type="server_enableinvites"></block>
     </category>
 
     <category name="Slash Commands" colour="#5b5ba5">
@@ -313,7 +326,35 @@
           </shadow>
         </value>
       </block>
-      <block type="slash_input"></block>
+      <block type="slash_input">
+        <value name="NAME">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="DESCRIPTION">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="REQUIRED">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="slash_inputchoice">
+        <value name="NAME">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
       <sep gap="50"></sep>
       <block type="slash_received"></block>
       <block type="slash_reply">
@@ -337,7 +378,13 @@
       </block>
       <block type="slash_deletereply"></block>
       <sep gap="50"></sep>
-      <block type="slash_getinput"></block>
+      <block type="slash_getinput">
+        <value name="NAME">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
       <block type="slash_commandname"></block>
       <block type="slash_user"></block>
       <block type="slash_member"></block>
@@ -357,14 +404,24 @@
 
   </xml>
 
-  <div id="javascriptcodepopup">
+  <div class="popup" id="javascriptcodepopup">
     <div id="jscpbs">
-      <button class="jscpButton" id="jscpB1" onclick="closeJavascriptCodePopup()">Close</button>
-      <button class="jscpButton" id="jscpB2" onclick="copyJavascriptCodePopup()">Copy</button>
+      <button class="popupButton redButton" onclick="closeJavascriptCodePopup()">Close</button>
+      <button class="popupButton blueButton" onclick="copyJavascriptCodePopup()">Copy</button>
     </div>
     <pre id="javascriptcodepopupCodeBlock">
       'If you see this, something probably broke'
     </pre>
+  </div>
+
+  <div class="popup" id="alertpopup">
+    <div id="alertpopupcontentdiv">
+      <p id="alertpopupcontentP"></p>
+      <div id="alertpopupbuttonsdiv">
+        <button class="popupButton redButton" id="alertpopupclosebutton">Close</button>
+        <button class="popupButton blueButton" id="alertpopupacceptbutton">Accept</button>
+      </div>
+    </div>
   </div>
 
   <script src="scripts/blockly.js"></script>
@@ -375,6 +432,8 @@
   <script src="blockly/games.js"></script>
   <script src="blockly/channel.js"></script>
   <script src="blockly/slash.js"></script>
+  <script src="blockly/server.js"></script>
+  <script src="blockly/colour.js"></script>
 
   <!-- <script src="path to your blocks here"></script>" -->
 </body>

@@ -35,7 +35,7 @@ javascript.javascriptGenerator.forBlock['message_receivednobot'] = function (blo
   var statements_code = generator.statementToCode(block, 'CODE');
 
   var code = `client.on(Events.MessageCreate, async (message) => {
-if (message.author.bot) return;
+  if (message.author.bot) return;
 ${statements_code}});`;
 
   return code;

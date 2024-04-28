@@ -68,6 +68,9 @@ const workspace = Blockly.inject("blocklyDiv", {
   },
 });
 
+const backpack = new Backpack(workspace);
+backpack.init();
+
 let localSaveCount = 4;
 var javascriptCode = '';
 
@@ -178,10 +181,8 @@ function loadFromFile() {
   fileInput.remove();
 }
 
-function recoverProject() {
-  let confirmRecover = window.confirm(
-    "Are you sure? This should only be used if your project could not saved or for other cases. If you confirm, the current project will be replaced will the last attempted saved project"
-  );
+async function recoverProject() {
+  let confirmRecover = await confirmPopup("Are you sure? This should only be used if your project could not saved or for other cases. If you confirm, the current project will be replaced will the last attempted saved project");
 
   if (confirmRecover) {
     const recoverData = localStorage.getItem("recoverXmlProject");
@@ -202,6 +203,9 @@ function recoverProject() {
     }
   }
 }
+
+document.getElementById('alertpopup').style.display = 'none';
+document.getElementById('javascriptcodepopup').style.display = 'none';
 
 function javascriptCodePopup() {
   document.getElementById('javascriptcodepopup').style.display = 'flex';
@@ -227,3 +231,38 @@ window.addEventListener('beforeunload', function(event) {
 });
 
 workspace.addChangeListener(Blockly.Events.disableOrphans);
+workspace.addChangeListener(shadowBlockConversionChangeListener);
+
+let backpackStorage = localStorage.getItem('backpackContents');
+
+if (backpackStorage) {
+  backpack.setContents(backpackStorage.split('|'))
+};
+
+backpack.onContentChange = function() {
+  localStorage.setItem('backpackContents', backpack.getContents().join('|'));
+}
+
+async function confirmPopup(content) {
+  if (typeof content != 'string') return;
+
+  document.getElementById('alertpopup').style.display = 'flex';
+  document.getElementById('alertpopupcontentP').textContent = content;
+
+  document.getElementById('alertpopup').style.animation = 'appearIn 0.3s forwards';
+  document.getElementById('alertpopupcontentdiv').style.animation = 'appearIn 0.3s forwards';
+
+  return new Promise((resolve, reject) => {
+    document.getElementById('alertpopupclosebutton').onclick = function () {
+      document.getElementById('alertpopup').style.display = 'none';
+
+      resolve(false);
+    };
+
+    document.getElementById('alertpopupacceptbutton').onclick = function () {
+      document.getElementById('alertpopup').style.display = 'none';
+
+      resolve(true);
+    };
+  });
+}
