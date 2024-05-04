@@ -27,18 +27,18 @@ registerContextMenuOptions();
 const DarkTheme = Blockly.Theme.defineTheme('DarkTheme', {
   base: Blockly.Themes.Classic,
   componentStyles: {
-    workspaceBackgroundColour: '#1e1e1e',
+    workspaceBackgroundColour: '#171717',
     toolboxBackgroundColour: 'blackBackground',
-    toolboxForegroundColour: '#fff',
-    flyoutBackgroundColour: '#252526',
-    flyoutForegroundColour: '#ccc',
-    flyoutOpacity: 1,
+    toolboxForegroundColour: '#ffffff',
+    flyoutBackgroundColour: '#1C1C1C',
+    flyoutForegroundColour: '#ffffff',
+    flyoutOpacity: 0.9,
     scrollbarColour: '#797979',
     insertionMarkerColour: '#ffffff',
     insertionMarkerOpacity: 0.3,
-    scrollbarOpacity: 0.4,
+    scrollbarOpacity: 0.5,
     cursorColour: '#d0d0d0',
-    blackBackground: '#333',
+    blackBackground: '#202224',
   },
 });
 
@@ -74,6 +74,20 @@ backpack.init();
 let localSaveCount = 4;
 var javascriptCode = '';
 
+async function bulkAddReservedWords(array) {
+  if (!Array.isArray(array)) return;
+
+  array.forEach(element => {
+    javascript.javascriptGenerator.addReservedWords(String(element));
+  });
+}
+
+bulkAddReservedWords([
+  'forEachGuildServer','guildDelete','newMessage','oldMessage','deletedMessage','message','EmbedBuilder',
+  'ActivityType','Events','Collection','SlashCommandBuilder','SlashCommandSubcommandBuilder',
+  'PermissionsBitField','Discord','client','interaction','IntentsBitField'
+]);
+
 function emptyXml(xml) {
   return xml == '<xml xmlns="https://developers.google.com/blockly/xml"></xml>'  || xml == '';
 }
@@ -99,6 +113,10 @@ function updateCode(event) {
 
   var code = Blockly.JavaScript.workspaceToCode(workspace);
 
+  let options = { indent_size: 2, space_in_empty_paren: true };
+
+  code = js_beautify(code, options);
+
   javascriptCode = `const Discord = require("discord.js");
 const {
   EmbedBuilder,
@@ -120,6 +138,8 @@ const client = new Discord.Client({
   ]
 });
 
+client.setMaxListeners(0);
+
 client.on(Events.ClientReady, () => {
   console.log(\`I'm connected as \${client.user.tag}!\`);
 });
@@ -130,25 +150,46 @@ ${code}`;
 workspace.addChangeListener(updateCode);
 updateCode({ event:'event' });
 
+function hasParentOfType(block, type) {
+  var currentBlock = block;
+
+  while (currentBlock.getParent()) {
+    if (currentBlock.type == type) return true;
+    
+    currentBlock = currentBlock.getParent();
+  }
+
+  return false;
+}
+
 async function saveToFile() {
-  var xmlDom = Blockly.Xml.workspaceToDom(workspace);
-  var xmlText = Blockly.Xml.domToText(xmlDom);
+  var xmlDom = await Blockly.Xml.workspaceToDom(workspace);
+  var xmlText = await Blockly.Xml.domToText(xmlDom);
+  
   var blob = new Blob([xmlText], { type: "application/xml" });
 
-  const fileHandle = await window.showSaveFilePicker({
-    suggestedName: "botblocks",
-    types: [{
-      description: "Bot Blocks Workspace",
-      accept: { "application/xml": [".bbw"] },
-    }]
-  });
-
-  console.log(fileHandle)
-
-  const writableStream = await fileHandle.createWritable();
-  await writableStream.write(blob);
-  await writableStream.close();
+  try {
+    const fileHandle = await window.showSaveFilePicker({
+      suggestedName: "botblocks",
+      types: [{
+        description: "Bot Blocks Workspace",
+        accept: { "application/xml": [".bbw"] },
+      }]
+    });
+    
+    const writableStream = await fileHandle.createWritable();
+    
+    await writableStream.write(blob);
+    await writableStream.close();
+    
+    console.log("File saved successfully!");
+  } catch (err) {
+    let textErr = "Error saving file: " + err;
+    window.alert(textErr);
+    console.error(textErr);
+  }
 }
+
 
 function loadFromFile() {
   var fileInput = document.createElement("input");
@@ -182,7 +223,7 @@ function loadFromFile() {
 }
 
 async function recoverProject() {
-  let confirmRecover = await confirmPopup("Are you sure? This should only be used if your project could not saved or for other cases. If you confirm, the current project will be replaced will the last attempted saved project");
+  let confirmRecover = await confirmPopup('Recover Project',"Are you sure? This should only be used if your project could not saved or for other cases. If you confirm, the current project will be replaced with the last attempted saved project.");
 
   if (confirmRecover) {
     const recoverData = localStorage.getItem("recoverXmlProject");
@@ -243,11 +284,12 @@ backpack.onContentChange = function() {
   localStorage.setItem('backpackContents', backpack.getContents().join('|'));
 }
 
-async function confirmPopup(content) {
-  if (typeof content != 'string') return;
+async function confirmPopup(title, content) {
+  if (typeof content != 'string' || typeof title != 'string') return;
 
   document.getElementById('alertpopup').style.display = 'flex';
   document.getElementById('alertpopupcontentP').textContent = content;
+  document.getElementById('alertpopupcontenttitle').textContent = title;
 
   document.getElementById('alertpopup').style.animation = 'appearIn 0.3s forwards';
   document.getElementById('alertpopupcontentdiv').style.animation = 'appearIn 0.3s forwards';

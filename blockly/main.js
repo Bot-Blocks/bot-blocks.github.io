@@ -20,7 +20,7 @@ javascript.javascriptGenerator.forBlock['main_bottoken'] = function (block, gene
 Blockly.Blocks['client_connected'] = {
   init: function () {
     this.appendDummyInput()
-      .appendField("when bot connects");
+      .appendField("when the bot connects");
     this.appendStatementInput("CODE")
       .setCheck(null);
     this.setColour(300);

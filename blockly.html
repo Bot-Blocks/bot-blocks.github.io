@@ -5,7 +5,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="og:title" content="Bot Blocks Editor">
+  <meta name="og:description" content="Make Discord bots easily using easy-to-understand blocks">
+  <meta name="description" content="Make Discord bots easily using easy-to-understand blocks">
+  <meta name="url" content="https://bot-blocks.vercel.app/blockly">
   <title>Bot Blocks</title>
+
+  <!-- Icon -->
+  <link rel="icon" type="image/x-icon" href="static/icons/favicon.ico">
 
   <!-- Include Blockly library -->
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
@@ -14,6 +21,9 @@
   <script src="https://unpkg.com/@blockly/theme-dark@6.0.5/dist/index.js"></script>
   <script src="https://unpkg.com/@blockly/field-colour-hsv-sliders@4.2.5/dist/index.js"></script>
   <script src="https://unpkg.com/@blockly/shadow-block-converter"></script>
+
+  <!-- Include other libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify.min.js"></script>
 
   <link rel="stylesheet" href="css/blockly.css">
 </head>
@@ -286,11 +296,82 @@
       <block type="message_receivednobot"></block>
       <block type="message_reply"></block>
       <sep gap="50"></sep>
+      <block type="message"></block>
       <block type="message_content"></block>
       <block type="message_user"></block>
       <block type="message_member"></block>
       <block type="message_channel"></block>
       <block type="message_guild"></block>
+      <sep gap="50"></sep>
+      <block type="message_property"></block>
+    </category>
+
+    <category name="Embed" colour="#eb9d31">
+      <block type="embed_create"></block>
+      <block type="embed_settitle">
+        <value name="TITLE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="embed_setcolour">
+        <value name="COLOUR">
+          <shadow type="colour_hsv_sliders">
+            <field name="COLOUR">#ff0000</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="embed_setdescription">
+        <value name="DESCRIPTION">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="embed_seturl">
+        <value name="URL">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="embed_setfooter">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="ICON">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="embed_addfield">
+        <value name="TITLE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="DESCRIPTION">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="INLINE">
+          <shadow type="logic_boolean">
+            <field name="BOOL">FALSE</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="embed_getembed">
+        <value name="CONTENT">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
     </category>
 
     <category name="Channel" colour="#a56d5b">
@@ -305,6 +386,9 @@
       <block type="server_properties"></block>
       <block type="server_disableinvites"></block>
       <block type="server_enableinvites"></block>
+      <sep gap="50"></sep>
+      <block type="server_foreach"></block>
+      <block type="server_foreachvariable"></block>
     </category>
 
     <category name="Slash Commands" colour="#5b5ba5">
@@ -369,6 +453,18 @@
           </shadow>
         </value>
       </block>
+      <block type="slash_replywithembed">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        <value name="EPHEMERAL">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+        </value>
+      </block>
       <block type="slash_editreply">
         <value name="TEXT">
           <shadow type="text">
@@ -390,6 +486,26 @@
       <block type="slash_member"></block>
       <block type="slash_channel"></block>
       <block type="slash_guild"></block>
+    </category>
+
+    <sep></sep>
+
+    <category name="Events" colour="#5b5ba5">
+      <category name="Server Joins" colour="#5b5ba5">
+        <block type="events_guildcreate"></block>
+        <block type="events_guildcreatevariable"></block>
+      </category>
+      <category name="Server Leaves" colour="5b5ba5">
+        <block type="events_guilddelete"></block>
+        <block type="events_guilddeletevariable"></block>
+      </category>
+      <category name="Message Actions" colour="5b5ba5">
+        <block type="events_messagedelete"></block>
+        <block type="events_messagedeletevariable"></block>
+        <block type="events_messageedited"></block>
+        <block type="events_messageeditedvariable"></block>
+        <block type="events_messageeditednewvariable"></block>
+      </category>
     </category>
 
     <sep></sep>
@@ -416,6 +532,7 @@
 
   <div class="popup" id="alertpopup">
     <div id="alertpopupcontentdiv">
+      <h1 id="alertpopupcontenttitle">hi</h1>
       <p id="alertpopupcontentP"></p>
       <div id="alertpopupbuttonsdiv">
         <button class="popupButton redButton" id="alertpopupclosebutton">Close</button>
@@ -434,6 +551,8 @@
   <script src="blockly/slash.js"></script>
   <script src="blockly/server.js"></script>
   <script src="blockly/colour.js"></script>
+  <script src="blockly/embed.js"></script>
+  <script src="blockly/events.js"></script>
 
   <!-- <script src="path to your blocks here"></script>" -->
 </body>

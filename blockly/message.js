@@ -52,15 +52,48 @@ Blockly.Blocks['message_reply'] = {
     this.setColour(195);
     this.setTooltip("");
     this.setHelpUrl("");
+
+    this.setOnChange(function () {
+      var parent = this.getRootBlock();
+      
+      if (!parent.type.startsWith('message_received')) {
+        this.setWarningText('This block should be used in a "when message received" event');
+      } else {
+        this.setWarningText(null);
+      }
+    });
   }
 };
 
 javascript.javascriptGenerator.forBlock['message_reply'] = function (block, generator) {
   var value_reply = generator.valueToCode(block, 'REPLY', javascript.Order.ATOMIC);
 
-  var code = `message.reply(${value_reply});\n`;
+  return `message.reply(${value_reply});\n`;
+};
 
-  return code;
+Blockly.Blocks['message'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("message");
+    this.setOutput(true, "Message");
+    this.setColour(195);
+    this.setTooltip("");
+    this.setHelpUrl("");
+
+    this.setOnChange(function () {
+      var parent = this.getRootBlock();
+
+      if (!parent.type.startsWith('message_received')) {
+        this.setWarningText('This block should be used in a "when message received" event');
+      } else {
+        this.setWarningText(null);
+      }
+    });
+  }
+};
+
+javascript.javascriptGenerator.forBlock['message'] = function (block, generator) {
+  return ['message', javascript.Order.NONE];
 };
 
 Blockly.Blocks['message_content'] = {
@@ -72,6 +105,16 @@ Blockly.Blocks['message_content'] = {
     this.setColour(195);
     this.setTooltip("");
     this.setHelpUrl("");
+
+    this.setOnChange(function () {
+      var parent = this.getRootBlock();
+      
+      if (!parent.type.startsWith('message_received')) {
+        this.setWarningText('This block should be used in a "when message received" event');
+      } else {
+        this.setWarningText(null);
+      }
+    });
   }
 };
 
@@ -84,10 +127,20 @@ Blockly.Blocks['message_user'] = {
     this.appendDummyInput()
       .appendField("message author");
     this.setInputsInline(true);
-    this.setOutput(true, "String");
+    this.setOutput(true, "User");
     this.setColour(210);
     this.setTooltip("");
     this.setHelpUrl("");
+
+    this.setOnChange(function () {
+      var parent = this.getRootBlock();
+      
+      if (!parent.type.startsWith('message_received')) {
+        this.setWarningText('This block should be used in a "when message received" event');
+      } else {
+        this.setWarningText(null);
+      }
+    });
   }
 };
 
@@ -104,6 +157,16 @@ Blockly.Blocks['message_member'] = {
     this.setColour(45);
     this.setTooltip("");
     this.setHelpUrl("");
+
+    this.setOnChange(function () {
+      var parent = this.getRootBlock();
+      
+      if (!parent.type.startsWith('message_received')) {
+        this.setWarningText('This block should be used in a "when message received" event');
+      } else {
+        this.setWarningText(null);
+      }
+    });
   }
 };
 
@@ -120,6 +183,16 @@ Blockly.Blocks['message_channel'] = {
     this.setColour(15);
     this.setTooltip("");
     this.setHelpUrl("");
+
+    this.setOnChange(function () {
+      var parent = this.getRootBlock();
+      
+      if (!parent.type.startsWith('message_received')) {
+        this.setWarningText('This block should be used in a "when message received" event');
+      } else {
+        this.setWarningText(null);
+      }
+    });
   }
 };
 
@@ -136,9 +209,56 @@ Blockly.Blocks['message_guild'] = {
     this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
+
+    this.setOnChange(function () {
+      var parent = this.getRootBlock();
+      
+      if (!parent.type.startsWith('message_received')) {
+        this.setWarningText('This block should be used in a "when message received" event');
+      } else {
+        this.setWarningText(null);
+      }
+    });
   }
 };
 
 javascript.javascriptGenerator.forBlock['message_guild'] = function (block, generator) {
   return ['message.guild', javascript.Order.NONE];
+};
+
+Blockly.Blocks['message_property'] = {
+  init: function () {
+    this.appendValueInput("MESSAGE")
+      .setCheck("Message")
+      .appendField(new Blockly.FieldDropdown([["content", "content"], ["id", "id"], ["creation date", "createdAt"], ["author", "author"], ["author member", "member"], ["channel", "channel"], ["server", "guild"], ["type", "type"], ["url", "url"]]), "PROPERTY")
+      .appendField("of message");
+    this.setInputsInline(true);
+    this.setOutput(true, "String");
+    this.setColour(195);
+    this.setTooltip("");
+    this.setHelpUrl("");
+
+    this.setOnChange(function () {
+      var type = this.getFieldValue('PROPERTY');
+
+      if (type == 'channel') {
+        this.setOutput(true, "Channel");
+      } else if (type == 'guild') {
+        this.setOutput(true, "Guild");
+      } else if (type == 'author') {
+        this.setOutput(true, "User");
+      } else if (type == 'member') {
+        this.setOutput(true, "Member");
+      } else {
+        this.setOutput(true, "String");
+      }
+    });
+  }
+};
+
+javascript.javascriptGenerator.forBlock['message_property'] = function (block, generator) {
+  var dropdown_property = block.getFieldValue('PROPERTY');
+  var value_message = generator.valueToCode(block, 'MESSAGE', javascript.Order.ATOMIC);
+
+  return [`${value_message}.${dropdown_property}`, javascript.Order.NONE];
 };

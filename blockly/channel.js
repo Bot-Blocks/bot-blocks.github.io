@@ -45,29 +45,6 @@ javascript.javascriptGenerator.forBlock['channel_channelwithid'] = function (blo
     return [code, javascript.Order.NONE];
 };
 
-// deprecated
-Blockly.Blocks['channel_channelid'] = {
-    init: function () {
-        this.appendValueInput("CHANNEL")
-            .setCheck("Channel")
-            .appendField("id of channel");
-        this.setInputsInline(true);
-        this.setOutput(true, "String");
-        this.setColour(15);
-        this.setTooltip("");
-        this.setHelpUrl("");
-    }
-};
-
-// deprecated
-javascript.javascriptGenerator.forBlock['channel_channelid'] = function (block, generator) {
-    var value_channel = generator.valueToCode(block, 'CHANNEL', javascript.Order.ATOMIC);
-
-    var code = `${value_channel}.id`;
-
-    return [code, javascript.Order.NONE];
-};
-
 Blockly.Blocks['channel_properties'] = {
     init: function () {
         this.appendValueInput("CHANNEL")
@@ -79,6 +56,20 @@ Blockly.Blocks['channel_properties'] = {
         this.setColour(15);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var type = this.getFieldValue('PROPERTY');
+            
+            let numberArr = ["position", "members.cache.filter(u => !u.bot).size", "members.cache.filter(u => u.bot).size"];
+            
+            if (numberArr.indexOf(type) !== -1) {
+                this.setOutput(true, "Number");
+            } else if (type == "joinedAt"){
+                this.setOutput(true, "Date");
+            } else {
+                this.setOutput(true, "String");
+            }
+        });
     }
 };
 

@@ -51,6 +51,16 @@ Blockly.Blocks['slash_create'] = {
         this.setColour(230);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getParent();
+
+            if (parent?.type != 'slash_main') {
+                this.setWarningText('This block should be used inside a "create global slash commands" block');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -88,6 +98,16 @@ Blockly.Blocks['slash_input'] = {
         this.setColour(220);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getParent();
+
+            if (parent?.type != ('slash_create')) {
+                this.setWarningText('This block should be used inside a "slash command" block');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -121,6 +141,16 @@ Blockly.Blocks['slash_getinput'] = {
         this.setColour(220);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -161,6 +191,16 @@ Blockly.Blocks['slash_commandname'] = {
         this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -171,7 +211,7 @@ javascript.javascriptGenerator.forBlock['slash_commandname'] = function (block, 
 Blockly.Blocks['slash_reply'] = {
     init: function () {
         this.appendValueInput("TEXT")
-            .setCheck(["String", "Embed"])
+            .setCheck("String")
             .appendField("reply to slash command with");
         this.appendValueInput("EPHEMERAL")
             .setCheck("Boolean")
@@ -181,6 +221,16 @@ Blockly.Blocks['slash_reply'] = {
         this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -188,7 +238,7 @@ javascript.javascriptGenerator.forBlock['slash_reply'] = function (block, genera
     var value_text = generator.valueToCode(block, 'TEXT', javascript.Order.ATOMIC);
     var value_ephemeral = generator.valueToCode(block, 'EPHEMERAL', javascript.Order.ATOMIC);
 
-    var code = `interaction.reply({ content:${value_text}, ephemeral:${value_ephemeral} });\n`;
+    var code = `interaction.reply({ content:${value_text},ephemeral:${value_ephemeral} });\n`;
     return code;
 };
 
@@ -201,6 +251,16 @@ Blockly.Blocks['slash_user'] = {
         this.setColour(210);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -217,6 +277,16 @@ Blockly.Blocks['slash_member'] = {
         this.setColour(45);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -227,12 +297,22 @@ javascript.javascriptGenerator.forBlock['slash_member'] = function (block, gener
 Blockly.Blocks['slash_channel'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("command channel");
+            .appendField("slash command channel");
         this.setInputsInline(true);
         this.setOutput(true, "Channel");
         this.setColour(15);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -243,12 +323,22 @@ javascript.javascriptGenerator.forBlock['slash_channel'] = function (block, gene
 Blockly.Blocks['slash_guild'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField("command server");
+            .appendField("slash command server");
         this.setInputsInline(true);
         this.setOutput(true, "Guild");
         this.setColour(0);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -259,7 +349,7 @@ javascript.javascriptGenerator.forBlock['slash_guild'] = function (block, genera
 Blockly.Blocks['slash_editreply'] = {
     init: function () {
         this.appendValueInput("TEXT")
-            .setCheck(["String", "Embed"])
+            .setCheck("String")
             .appendField("edit command reply to");
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
@@ -267,6 +357,16 @@ Blockly.Blocks['slash_editreply'] = {
         this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -286,6 +386,16 @@ Blockly.Blocks['slash_deletereply'] = {
         this.setColour(240);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -307,6 +417,16 @@ Blockly.Blocks['slash_inputchoice'] = {
         this.setColour(210);
         this.setTooltip("");
         this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getParent();
+
+            if (parent?.type != ('slash_input')) {
+                this.setWarningText('This block should be used inside a "create [] input" block');
+            } else {
+                this.setWarningText(null);
+            }
+        });
     }
 };
 
@@ -314,7 +434,50 @@ javascript.javascriptGenerator.forBlock['slash_inputchoice'] = function (block, 
     var value_name = generator.valueToCode(block, 'NAME', javascript.Order.ATOMIC);
     var value_value = generator.valueToCode(block, 'VALUE', javascript.Order.ATOMIC);
 
-    var code = `{name:${value_name},value:${value_value}},`;
+    var code = `{ name:${value_name},value:${value_value} },`;
 
+    return code;
+};
+
+Blockly.Blocks['slash_replywithembed'] = {
+    init: function () {
+        var validator = function (newValue) {
+            return newValue.replace(/[^a-zA-Z0-9_$]/g, '');
+        }
+
+        this.appendValueInput("TEXT")
+            .setCheck("String")
+            .appendField("reply to command with");
+        this.appendDummyInput()
+            .appendField("and embed with name")
+            .appendField(new Blockly.FieldTextInput("embed", validator), "NAME");
+        this.appendValueInput("EPHEMERAL")
+            .setCheck("Boolean")
+            .appendField("hidden reply?");
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(240);
+        this.setTooltip("");
+        this.setHelpUrl("");
+
+        this.setOnChange(function () {
+            var parent = this.getRootBlock();
+
+            if (parent.type != ('slash_received')) {
+                this.setWarningText('This block should be used in a "when a slash command runs" event');
+            } else {
+                this.setWarningText(null);
+            }
+        });
+    }
+};
+
+javascript.javascriptGenerator.forBlock['slash_replywithembed'] = function (block, generator) {
+    var value_text = generator.valueToCode(block, 'TEXT', javascript.Order.ATOMIC);
+    var text_name = block.getFieldValue('NAME');
+    var value_ephemeral = generator.valueToCode(block, 'EPHEMERAL', javascript.Order.ATOMIC);
+
+    var code = `{ embeds:[embedCreator${text_name}],content:${value_text},ephemeral:${value_ephemeral} }`;
     return code;
 };
